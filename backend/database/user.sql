@@ -3,9 +3,11 @@ CREATE TABLE "users" (
                          "username" varchar(36) UNIQUE NOT NULL,
                          "email" varchar(36) UNIQUE NOT NULL,
                          "password" varchar(255) NOT NULL,
-                         "role" varchar(20) DEFAULT 'student',
-                         "created_at" timestamp DEFAULT (current_timestamp),
-                         "updated_at" timestamp DEFAULT (current_timestamp)
+                         "role" varchar(15) CHECK ("role" IN ('student', 'admin', 'teacher')) DEFAULT 'student',
+                         "is_active" boolean DEFAULT false,
+                         "verified" boolean DEFAULT false,
+                         "created_at" timestamp DEFAULT current_timestamp,
+                         "updated_at" timestamp DEFAULT current_timestamp
 );
 
 CREATE TABLE "student" (
